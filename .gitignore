@@ -50,3 +50,8 @@ target/*
 
 /target
 
+
+##adhoc
+misc.xml
+compiler.xml
+encodings.xml

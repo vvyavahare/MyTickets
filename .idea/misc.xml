@@ -6,6 +6,10 @@
       <list>
         <option value="$PROJECT_DIR$/flights/pom.xml" />
         <option value="$PROJECT_DIR$/AirTravel-Reservation/pom.xml" />
+        <option value="$PROJECT_DIR$/configserver/pom.xml" />
+        <option value="$PROJECT_DIR$/eurekaserver/pom.xml" />
+        <option value="$PROJECT_DIR$/gatewayserver/pom.xml" />
+        <option value="$PROJECT_DIR$/accounts/pom.xml" />
       </list>
     </option>
   </component>
