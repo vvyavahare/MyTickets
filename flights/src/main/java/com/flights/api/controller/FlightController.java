@@ -60,6 +60,8 @@ public class FlightController {
 
     @GetMapping("/flight")
     public ResponseEntity<List<FlightDto>> getAllFlights(@RequestParam Optional<String> origin, @RequestParam Optional<String> orderBy) {
+        log.debug("searching all flights for origin:{} & order By:{}", origin.get(), orderBy.get());
+
         List<FlightDto> flights = flightService.findAllFlights(origin, orderBy);
         return ResponseEntity.ok().body(flights);
     }
