@@ -1,4 +1,4 @@
-package com.reserve.reserve;
+package com.reserve;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

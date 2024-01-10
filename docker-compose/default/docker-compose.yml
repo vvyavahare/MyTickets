@@ -48,6 +48,23 @@ services:
       file: common-config.yml
       service: microservice-eureka-config
 
+  reserve:
+    image: "vishalvdev/reserve:s9"
+    container_name: reserve-ms
+    ports:
+      - "8082:8082"
+    healthcheck:
+      test: "curl --fail --silent localhost:8082/actuator/health/readiness | grep UP || exit 1"
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    environment:
+      SPRING_APPLICATION_NAME: "reserve"
+    extends:
+      file: common-config.yml
+      service: microservice-eureka-config
+
   gatewayserver:
     image: "vishalvdev/gatewayserver:s9"
     container_name: gatewayserver-ms
@@ -55,6 +72,8 @@ services:
       - "8072:8072"
     depends_on:
       flights:
+        condition: service_healthy
+      reserve:
         condition: service_healthy
     environment:
       SPRING_APPLICATION_NAME: "gatewayserver"
