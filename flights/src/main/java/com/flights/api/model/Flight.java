@@ -7,6 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -19,4 +20,7 @@ public class Flight extends BaseEntity {
     private String origin;
     private String destination;
     private List<Integer> speedSeries;
+    private int capacity;
+    private LocalDateTime departureTime;
+    private String flightNumber;
 }

@@ -14,6 +14,9 @@ public class FlightMapper {
         model.setFlight(flight.getFlight());
         model.setOrigin(flight.getOrigin());
         model.setSpeedSeries(flight.getSpeedSeries());
+        model.setDepartureTime(flight.getDepartureTime());
+        model.setCapacity(flight.getCapacity());
+        model.setFlightNumber(flight.getFlightNumber());
         return model;
     }
 
@@ -22,6 +25,9 @@ public class FlightMapper {
         flight.setOrigin(flightDto.getOrigin());
         flight.setSpeedSeries(flightDto.getSpeedSeries());
         flight.setFlight(flightDto.getFlight());
+        flight.setCapacity(flightDto.getCapacity());
+        flight.setDepartureTime(flightDto.getDepartureTime());
+        flight.setFlightNumber(flightDto.getFlightNumber());
         return flight;
     }
 

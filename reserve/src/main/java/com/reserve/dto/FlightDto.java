@@ -1,4 +1,4 @@
-package com.flights.api.dto;
+package com.reserve.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotEmpty;
@@ -46,7 +46,6 @@ public class FlightDto {
             description = "Speed series of the flight", example = "737"
     )
     private List<Integer> speedSeries;
-
     @NotEmpty(message = "Capacity of the flight can not be empty or null")
     @Schema(
             description = "Capacity of the flight ", example = "737"
@@ -58,6 +57,5 @@ public class FlightDto {
             description = "flight departure time  ", example = "2023-15-01:18.22.00"
     )
     private LocalDateTime departureTime;
-
 
 }

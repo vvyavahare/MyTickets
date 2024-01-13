@@ -53,14 +53,20 @@ public class FlightController {
     @PostMapping("/flight")
     public ResponseEntity<FlightDto> createFlight(@RequestBody FlightDto flightDto) {
         log.debug("creating new flight with origin:{} & destination:{}", flightDto.getOrigin(), flightDto.getDestination());
+        generateFlightNumber(flightDto);
         Flight flightCreated = flightService.createFlight(flightDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(FlightMapper.mapToDto(flightCreated, new FlightDto()));
+    }
+
+    private void generateFlightNumber(FlightDto flightDto) {
+        long number = (long) Math.floor(Math.random() * 9_000_000_000L) + 1_000_000_000L;
+        flightDto.setFlightNumber(String.valueOf(number));
     }
 
 
     @GetMapping("/flight")
     public ResponseEntity<List<FlightDto>> getAllFlights(@RequestParam Optional<String> origin, @RequestParam Optional<String> orderBy) {
-        log.debug("searching all flights for origin:{} & order By:{}", origin.get(), orderBy.get());
+        log.debug("Getting all flight details");
 
         List<FlightDto> flights = flightService.findAllFlights(origin, orderBy);
         return ResponseEntity.ok().body(flights);

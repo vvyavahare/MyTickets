@@ -1,22 +1,31 @@
 package com.reserve.controller;
 
 import com.reserve.dto.ErrorResponseDto;
+import com.reserve.dto.FlightDto;
+import com.reserve.service.FlightsFeignClient;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @Slf4j
+//@AllArgsConstructor
 public class ReservationController {
 
+
+    @Autowired
+    FlightsFeignClient client;
 
     @Operation(
             summary = "Create Flight REST API",
@@ -36,10 +45,20 @@ public class ReservationController {
             )
     }
     )
-    @PostMapping("/reserve")
-    public ResponseEntity<String> createFlight(@RequestBody String flightDto) {
-        log.debug("creating new flight with origin:{} & destination:{}", flightDto);
 
+    @PostMapping("/reserve")
+    public ResponseEntity<String> reserve(@RequestBody String flightDto) {
+        log.debug("creating a new reservation:{}", flightDto);
+        ResponseEntity<List<FlightDto>> flightDtoList = client.fetchFlightDetails("Schiphol", null);
+//        ResponseEntity<List<FlightDto>> flightDtoList = client.fetchFlightDetails(origin, Optional.empty());
         return ResponseEntity.status(HttpStatus.CREATED).body(flightDto);
     }
+
+    @GetMapping("/flights")
+    public ResponseEntity<List<FlightDto>> getFlights(@RequestParam Optional<String> origin,
+                                                      @RequestParam Optional<String> orderBy) {
+        ResponseEntity<List<FlightDto>> flightDtoListResponse = client.fetchFlightDetails(origin.orElse(null), orderBy.orElse(null));
+        return flightDtoListResponse;
+    }
+
 }

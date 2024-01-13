@@ -23,6 +23,11 @@ public class GatewayserverApplication {
                         .filters(f -> f.rewritePath("/flights/(?<segment>.*)", "/${segment}")
                                 .addResponseHeader("X-Response-Time", LocalDateTime.now().toString()))
                         .uri("lb://flights"))
+                .route(p -> p
+                        .path("/reserve/**")
+                        .filters(f -> f.rewritePath("/reserve/(?<segment>.*)", "/${segment}")
+                                .addResponseHeader("X-Response-Time", LocalDateTime.now().toString()))
+                        .uri("lb://reserve"))
 //                .route(p -> p
 //                        .path("/tickets/**")
 //                        .filters(f -> f.rewritePath("/tickets/(?<segment>.*)", "/${segment}")
