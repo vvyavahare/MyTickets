@@ -1,0 +1,2 @@
+insert into passenger (passenger_id,first_name,last_name,prefix,created_at,created_by,updated_at,updated_by,date_of_birth) values
+ (1,'Kimmi','Pandey','Mrs',now(),'RESERVE_MS',now(),'RESERVE_MS',now());

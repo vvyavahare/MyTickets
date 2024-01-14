@@ -46,6 +46,7 @@ public class FlightDto {
             description = "Speed series of the flight", example = "737"
     )
     private List<Integer> speedSeries;
+
     @NotEmpty(message = "Capacity of the flight can not be empty or null")
     @Schema(
             description = "Capacity of the flight ", example = "737"

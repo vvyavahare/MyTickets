@@ -1,8 +1,10 @@
 package com.reserve.controller;
 
+import com.reserve.dto.BookingDto;
 import com.reserve.dto.ErrorResponseDto;
 import com.reserve.dto.FlightDto;
 import com.reserve.service.FlightsFeignClient;
+import com.reserve.service.IBookingService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -27,6 +29,9 @@ public class ReservationController {
     @Autowired
     FlightsFeignClient client;
 
+    @Autowired
+    IBookingService service;
+
     @Operation(
             summary = "Create Flight REST API",
             description = "REST API to create new Flight detail inside Air travel system"
@@ -47,11 +52,12 @@ public class ReservationController {
     )
 
     @PostMapping("/reserve")
-    public ResponseEntity<String> reserve(@RequestBody String flightDto) {
-        log.debug("creating a new reservation:{}", flightDto);
-        ResponseEntity<List<FlightDto>> flightDtoList = client.fetchFlightDetails("Schiphol", null);
+    public ResponseEntity<BookingDto> reserve(@RequestBody BookingDto bookingDto) {
+        log.debug("creating a new reservation:{}", bookingDto);
+        service.createBooking(bookingDto);
 //        ResponseEntity<List<FlightDto>> flightDtoList = client.fetchFlightDetails(origin, Optional.empty());
-        return ResponseEntity.status(HttpStatus.CREATED).body(flightDto);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(bookingDto);
     }
 
     @GetMapping("/flights")
