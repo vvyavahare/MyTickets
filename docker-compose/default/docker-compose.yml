@@ -44,6 +44,7 @@ services:
       start_period: 10s
     environment:
       SPRING_APPLICATION_NAME: "flights"
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka-1:29092
     extends:
       file: common-config.yml
       service: microservice-eureka-config
@@ -61,6 +62,7 @@ services:
       start_period: 10s
     environment:
       SPRING_APPLICATION_NAME: "reserve"
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka-1:29092
     extends:
       file: common-config.yml
       service: microservice-eureka-config
@@ -88,6 +90,8 @@ services:
       ZOOKEEPER_TICK_TIME: 2000
     ports:
       - 22181:2181
+    networks:
+      - airtravel
 
   zookeeper-2:
     image: confluentinc/cp-zookeeper:latest
@@ -96,6 +100,8 @@ services:
       ZOOKEEPER_TICK_TIME: 2000
     ports:
       - 32181:2181
+    networks:
+      - airtravel
 
   kafka-1:
     image: confluentinc/cp-kafka:latest
@@ -112,6 +118,8 @@ services:
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    networks:
+      - airtravel
 
   kafka-2:
     image: confluentinc/cp-kafka:latest
@@ -127,6 +135,8 @@ services:
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    networks:
+      - airtravel
 
   elasticsearch:
     image: elasticsearch:8.2.2

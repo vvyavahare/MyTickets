@@ -1,7 +1,9 @@
 package com.reserve.config;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
@@ -12,11 +14,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
+@Slf4j
 public class KafkaProducerConfig {
+    @Value("${spring.kafka.bootstrap.servers:localhost:29092}")
+    private String bootstrapAddress;
 
     @Bean
     public ProducerFactory<String, String> producerFactory() {
-        String bootstrapAddress = "localhost:29092";
+        log.info("Loadddddding system props, bootstrapAddress:{}", bootstrapAddress);
+        if ("MISSING".equalsIgnoreCase(bootstrapAddress)) {
+            bootstrapAddress = "localhost:29092";
+        }
         Map<String, Object> configProps = new HashMap<>();
         configProps.put(
                 ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,

@@ -12,9 +12,9 @@ public class KafkaConsumer {
 
     @Autowired
     FlightRepository repository;
+
     @KafkaListener(topics = "my-topic")
     public void consumeMessage(String message) {
         log.info("Logger Received message: " + message);
-        System.out.println("Received message: " + message);
     }
 }
