@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+import "common/common.proto";
+
+option java_multiple_files = true;
+option java_package = "com.reviews.grpc.rating";
+
+message RatingDto{
+  string flightName = 1;
+  string content = 2;
+  string star = 3;
+  double rating = 4;
+}
+
+message RatingSearchRequest{
+  common.Star star = 1;
+}
+
+message RatingSearchResponse {
+  repeated RatingDto rating = 1;
+}
+
+service RatingService{
+  rpc getRatings(RatingSearchRequest) returns (RatingSearchResponse);
+}

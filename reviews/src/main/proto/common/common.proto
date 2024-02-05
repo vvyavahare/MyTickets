@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package common;
+
+option java_multiple_files = true;
+option java_package = "com.reviews.grpc.common";
+
+enum Star {
+  LOWEST = 0;
+  LOWER = 1;
+  MEDIUM = 2;
+  HIGHER = 3;
+  HIGHEST = 4;
+}
