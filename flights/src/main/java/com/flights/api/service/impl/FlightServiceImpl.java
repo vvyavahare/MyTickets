@@ -6,6 +6,8 @@ import com.flights.api.exception.ResourceNotFoundException;
 import com.flights.api.exception.ResponseNotFoundException;
 import com.flights.api.mapper.FlightMapper;
 import com.flights.api.model.Flight;
+import com.flights.api.model.FlightESEntity;
+import com.flights.api.repository.FlightESRepository;
 import com.flights.api.repository.FlightRepository;
 import com.flights.api.service.IFlightService;
 import lombok.AllArgsConstructor;
@@ -22,12 +24,15 @@ import java.util.Optional;
 @AllArgsConstructor
 public class FlightServiceImpl implements IFlightService {
     private FlightRepository flightRepository;
+    private FlightESRepository elasticRepository;
+
 
     @Override
     public Flight createFlight(FlightDto flightDto) {
 
         Flight flight = FlightMapper.mapToFlights(flightDto, new Flight());
         Flight savedFlight = flightRepository.save(flight);
+        elasticRepository.save(FlightMapper.mapToFlightEsEntity(new FlightESEntity(), savedFlight));
         return savedFlight;
 
     }

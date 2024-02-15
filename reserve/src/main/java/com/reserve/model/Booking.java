@@ -24,6 +24,8 @@ public class Booking extends BaseEntity {
     @JoinTable(
             name = "booking_passenger",
             joinColumns = @JoinColumn(name = "booking_id"),
-            inverseJoinColumns = @JoinColumn(name = "passenger_id"))
+            inverseJoinColumns = @JoinColumn(name = "passenger_id"),
+            foreignKey = @ForeignKey(name = "column_a"),
+            inverseForeignKey = @ForeignKey(name = "column_b"))
     private List<Passenger> passengerDetails;
 }
