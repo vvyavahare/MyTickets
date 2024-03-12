@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.reserve.dto.BookingDto;
 import com.reserve.mapper.BookingsMapper;
 import com.reserve.model.Booking;
+import com.reserve.model.BookingEsEntity;
+import com.reserve.repository.BookingEsRepository;
 import com.reserve.repository.BookingRepository;
 import com.reserve.service.IBookingService;
 import lombok.AllArgsConstructor;
@@ -23,11 +25,15 @@ public class BookingServiceImpl implements IBookingService {
     @Autowired
     private ObjectMapper mapper;
 
+    @Autowired
+    private BookingEsRepository esRepository;
+
     @Override
     public Booking createBooking(BookingDto dto) {
 
         Booking booking = BookingsMapper.mapToEntity(dto, new Booking());
         Booking savedEntity = repository.save(booking);
+        esRepository.save(BookingsMapper.mapToBookingEsEntity(new BookingEsEntity(),savedEntity));
         try {
             extracted(savedEntity);
         } catch (JsonProcessingException e) {

@@ -1,0 +1,89 @@
+http://localhost:8071/eurekaserver/default
+
+http://localhost:8081/h2-console
+
+http://localhost:8070/
+
+http://localhost:8072/actuator
+
+ mvn compile jib:dockerBuild
+
+
+docker compose up -d
+
+docker compose down
+
+docker system prune -a --volumes
+
+
+--------------------------------------------------------------------------------------------------------------
+
+http://localhost:5601/app/home#/
+
+GET flights_index/_search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+curl -XGET "http://elasticsearch:9200/flights_index/_search" -H 'Content-Type: application/json' -d'
+{
+  "query": {
+    "match_all": {}
+  }
+}'
+
+--------------------------------------------------------------------------------------------------------------
+
+
+Push Flight data also in ES
+Push Passenger data also in ES
+Push Reserve json data also in ES
+Push Ratings also in ES
+
+finally do analytics combining all 4 of above data.
+
+Make Rating service with gRPC and possibally with Kotlin
+Rating query:
+ 1. How many users write cheap flights from AMS to ABC
+ 2. .
+ 3. .
+ 4. .
+ 
+ 
+
+
+
+ToDo: Later: https://www.vinsguru.com/vinoth-selvaraj/
+https://github.com/vinsguru/grpc-java-course/tree/master/grpc-flix
+
+https://tcsglobal.udemy.com/course/complete-java-reactive-programming/
+https://github.com/vinsguru/spring-webflux-course
+
+
+----------------------------
+
+https://docs.docker.com/desktop/kubernetes/
+
+https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
+kubectl proxy
+
+http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#/login
+
+
+https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/creating-sample-user.md
+
+kubectl apply -f dashboard-adminuser.yaml
+kubectl apply -f ClusterRoleBinding.yaml
+kubectl -n kubernetes-dashboard create token admin-user
+
+Note: once token is generated, make sure its in 1 line, use notepad++ to remove extra space if any
+
+
+-------------------
+
+https://chocolatey.org/install
+
+https://community.chocolatey.org/packages/kubernetes-helm

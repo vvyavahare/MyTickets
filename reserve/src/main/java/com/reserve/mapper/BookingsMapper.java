@@ -2,6 +2,7 @@ package com.reserve.mapper;
 
 import com.reserve.dto.BookingDto;
 import com.reserve.model.Booking;
+import com.reserve.model.BookingEsEntity;
 
 import java.util.List;
 
@@ -27,5 +28,15 @@ public class BookingsMapper {
     public static List<BookingDto> mapEntityListToDtosList(List<BookingDto> dtos, List<Booking> entities) {
         entities.forEach(s -> dtos.add(mapToDto(s, new BookingDto())));
         return dtos;
+    }
+
+    public static BookingEsEntity mapToBookingEsEntity(BookingEsEntity esEntity, Booking booking) {
+        esEntity.setId(booking.getBookingId());
+        esEntity.setBookingDate(booking.getBookingDate());
+        esEntity.setFlightNumber(booking.getFlightNumber());
+        esEntity.setSeatCount(booking.getSeatCount());
+        esEntity.setPassengerDetails(booking.getPassengerDetails());
+        esEntity.setFinalBookingPriceInEuro(booking.getFinalBookingPriceInEuro());
+        return esEntity;
     }
 }

@@ -22,7 +22,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
                 version = "v1",
                 contact = @Contact(
                         name = "Vishal Vyavahare",
-                        email = "tutor@myairtravel.com",
+                        email = "vishal@myairtravel.com",
                         url = "https://www.myairtravel.com"
                 ),
                 license = @License(

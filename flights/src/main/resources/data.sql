@@ -19,10 +19,12 @@ insert into flight (capacity,created_at,created_by,departure_time,destination,fl
 insert into flight (capacity,created_at,created_by,departure_time,destination,flight,flight_number,origin,speed_series,id) values
     (700,now(),'FLIGHT_MS',now(),'Antwerp','Belgian Airways','8105675644','Schiphol',null,10);
 insert into flight (capacity,created_at,created_by,departure_time,destination,flight,flight_number,origin,speed_series,id) values
-    (700,now(),'FLIGHT_MS',now(),'Barcelona','Spanish Airways','8205675644','Schiphol',null,11);
+    (700,now(),'FLIGHT_MS',now(),'Barcelona','Spanish Airways','8205675645','Schiphol',null,11);
 insert into flight (capacity,created_at,created_by,departure_time,destination,flight,flight_number,origin,speed_series,id) values
-    (700,now(),'FLIGHT_MS',now(),'Hannover','German Airways','8205675644','Schiphol',null,12);
+    (700,now(),'FLIGHT_MS',now(),'Hannover','German Airways','8205675646','Schiphol',null,12);
 insert into flight (capacity,created_at,created_by,departure_time,destination,flight,flight_number,origin,speed_series,id) values
-    (700,now(),'FLIGHT_MS',now(),'Leipzig','German Airways','8205675644','Schiphol',null,13);
+    (700,now(),'FLIGHT_MS',now(),'Leipzig','German Airways','8205675647','Schiphol',null,13);
 insert into flight (capacity,created_at,created_by,departure_time,destination,flight,flight_number,origin,speed_series,id) values
-    (700,now(),'FLIGHT_MS',now(),'Kuwait','Kuwait Airways','8205675644','Schiphol',null,14);
+    (700,now(),'FLIGHT_MS',now(),'Kuwait','Kuwait Airways','8205675648','Schiphol',null,14);
+insert into flight (capacity,created_at,created_by,departure_time,destination,flight,flight_number,origin,speed_series,id) values
+    (700,now(),'FLIGHT_MS',now(),'Rome','Italia Airways','8205675648','Eindhoveen',null,15);
