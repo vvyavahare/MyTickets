@@ -6,6 +6,8 @@ http://localhost:8070/
 
 http://localhost:8072/actuator
 
+http://localhost:9090/admin  ## for keycloak admin
+
 mvn compile jib:dockerBuild
 
 
@@ -109,6 +111,10 @@ kubectl -n kubernetes-dashboard create token admin-user
 
 Note: once token is generated, make sure its in 1 line, use notepad++ to remove extra space if any
 
+Then install(deploy) all services using this command.
+helm install tickets-release dev
+
+Note below all commands are needed for 1 time setup of our ticket service (and additional support services like kafka,elasticsearch & kibana)
 
 -------------------
 
@@ -218,7 +224,17 @@ LAST DEPLOYED: Thu Mar 14 18:48:21 2024
 
 
 
+Finally to install(deploy) release of all applications as a bundle
+helm install tickets-release dev
 
+
+PS C:\Users\visha\IdeaProjects\MyTickets\docker-compose\miscellaneous\helm\environments> helm ls
+NAME            NAMESPACE       REVISION        UPDATED                                 STATUS          CHART           APP VERSION
+tickets-release default         1               2024-03-17 13:12:39.8485106 +0100 CET   deployed        dev-0.1.0       1.0.0
+
+
+PS C:\Users\visha\IdeaProjects\MyTickets\docker-compose\miscellaneous\helm\environments> helm uninstall tickets-release
+release "tickets-release" uninstalled
 
 
 ------------------------------------
@@ -240,4 +256,41 @@ release "kafka" uninstalled
 
 C:\Users\visha\IdeaProjects\MyTickets\docker-compose\miscellaneous\helm>
 
+
+
+
+
+
+
+
+
+----------------------------------
+in case port not accessible outside:
+
+PS C:\Users\visha\IdeaProjects\MyTickets> kubectl get pods
+NAME                                           READY   STATUS             RESTARTS       AGE
+configserver-deployment-67b77576c4-m9zwd       1/1     Running            1 (27m ago)    28m
+eurekaserver-deployment-bff46ff7f-686h8        1/1     Running            4 (27m ago)    28m
+flights-deployment-5f8c579ffc-bvzv8            0/1     CrashLoopBackOff   10 (55s ago)   28m
+gatewayserver-deployment-687dd658f5-4w6zq      1/1     Running            4 (27m ago)    28m
+reserve-deployment-7b949d8c57-xdv2q            1/1     Running            3 (27m ago)    28m
+tickets-release-elasticsearch-coordinating-0   1/1     Running            0              28m
+tickets-release-elasticsearch-coordinating-1   1/1     Running            0              28m
+tickets-release-elasticsearch-data-0           1/1     Running            0              28m
+tickets-release-elasticsearch-data-1           1/1     Running            0              28m
+tickets-release-elasticsearch-ingest-0         1/1     Running            0              28m
+tickets-release-elasticsearch-ingest-1         1/1     Running            0              28m
+tickets-release-elasticsearch-master-0         1/1     Running            0              28m
+tickets-release-elasticsearch-master-1         1/1     Running            0              28m
+tickets-release-kafka-controller-0             1/1     Running            0              28m
+tickets-release-kafka-controller-1             1/1     Running            0              28m
+tickets-release-kafka-controller-2             1/1     Running            0              28m
+
+
+PS C:\Users\visha\IdeaProjects\MyTickets> kubectl port-forward eurekaserver-deployment-bff46ff7f-686h8 8070:8070
+Forwarding from 127.0.0.1:8070 -> 8070
+Forwarding from [::1]:8070 -> 8070
+
+
+Then try to access : http://localhost:8070/
 
