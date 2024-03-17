@@ -294,3 +294,62 @@ Forwarding from [::1]:8070 -> 8070
 
 Then try to access : http://localhost:8070/
 
+
+
+-------------------------------------------------
+
+http://localhost:9090/realms/master/.well-known/openid-configuration
+
+
+Keyclock client creation for
+1. CLient credentials grant type:  [This grant type is used in case a MCS is going to communicate with another MCS]
+
+Goto Clients -> Create Client ->
+  Client Type : OpenID Connect
+  Client ID : Anything specific to your application , I named it airtravel-callcenter-cc
+  Name : Any APP name : Viswekshal AIrtravel APP
+  description : Viswekshal AIrtravel APP
+
+  Click on next
+
+  Enable "Client authentication" toggle
+
+  Disable : "Standard flow" & "Direct access grants" & Select "Service accounts roles"
+
+  CLick next -> Keep "Root URL" & "Home URL" as empty
+  Click Save
+  Now your client is created.
+
+  Now click on Clients tab [left panel] -> Click credentials tab : here you can find the client secret that you can give to
+  generate an access token.
+  Scope you can give as : openid email profile
+
+
+  Now lets create roles:
+    Click on Realm ROles [left panel] -> create a Role eg. flights
+    Click on Clients tab [left panel] -> Select your Client -> Click "Service accounts roles" tab -> Assign Role -> Assign newly created flights role to this client.
+
+  Now with this role, you can call POST APIs for flights & reserve MS. (Refer postman collection for way to generate token & give it in same POST request)
+
+--------------------------------------------------------------------------------------------
+
+How to pass accessToken in same POST APIs.
+
+1. In postman click on Authorization tab
+2. Select Type as Oauth 2.0 in left panel
+3. Then on right panel : Configure new token section
+4. Select Grant Type as "Client Credential"
+5. Given access token URL as : http://localhost:9090/realms/master/protocol/openid-connect/token
+   This can be found here :
+   On Keyclock server -> "Realm Settings" -> "Endpoints" -> "SAML 2.0 Identity Provider Metadata" ->
+   It will open this link : http://localhost:9090/realms/master/.well-known/openid-configuration
+   Here you can find "token_endpoint"
+6. Select client Id: "airtravel callcenter cc"  <your client name>
+7. Client Secret: <your client secret> this can be found under your client -> credential tab.
+8. Scope : openid email profile
+9. Scroll to bottom for "Get New Access Token"
+
+
+
+
+

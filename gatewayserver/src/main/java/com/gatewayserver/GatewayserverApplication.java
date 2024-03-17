@@ -19,13 +19,13 @@ public class GatewayserverApplication {
     public RouteLocator airTravelRouteConfig(RouteLocatorBuilder routeLocatorBuilder) {
         return routeLocatorBuilder.routes()
                 .route(p -> p
-                        .path("/flights/**")
-                        .filters(f -> f.rewritePath("/flights/(?<segment>.*)", "/${segment}")
+                        .path("/airtravel/flights/**")
+                        .filters(f -> f.rewritePath("/airtravel/flights/(?<segment>.*)", "/${segment}")
                                 .addResponseHeader("X-Response-Time", LocalDateTime.now().toString()))
                         .uri("lb://flights"))
                 .route(p -> p
-                        .path("/reserve/**")
-                        .filters(f -> f.rewritePath("/reserve/(?<segment>.*)", "/${segment}")
+                        .path("/airtravel/reserve/**")
+                        .filters(f -> f.rewritePath("/airtravel/reserve/(?<segment>.*)", "/${segment}")
                                 .addResponseHeader("X-Response-Time", LocalDateTime.now().toString()))
                         .uri("lb://reserve"))
 //                .route(p -> p

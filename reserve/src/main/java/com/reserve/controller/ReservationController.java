@@ -60,7 +60,7 @@ public class ReservationController {
         return ResponseEntity.status(HttpStatus.CREATED).body(bookingDto);
     }
 
-    @GetMapping("/flights")
+    @GetMapping("/all-flights")
     public ResponseEntity<List<FlightDto>> getFlights(@RequestParam Optional<String> origin,
                                                       @RequestParam Optional<String> orderBy) {
         ResponseEntity<List<FlightDto>> flightDtoListResponse = client.fetchFlightDetails(origin.orElse(null), orderBy.orElse(null));
