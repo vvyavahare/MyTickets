@@ -1,0 +1,30 @@
+dependencies:
+- name: airtravel-common
+  repository: file://../../airtravel-common
+  version: 0.1.0
+- name: configserver
+  repository: file://../../airtravel-services/configserver
+  version: 0.1.0
+- name: eurekaserver
+  repository: file://../../airtravel-services/eurekaserver
+  version: 0.1.0
+- name: flights
+  repository: file://../../airtravel-services/flights
+  version: 0.1.0
+- name: reserve
+  repository: file://../../airtravel-services/reserve
+  version: 0.1.0
+- name: gatewayserver
+  repository: file://../../airtravel-services/gatewayserver
+  version: 0.1.0
+- name: kafka
+  repository: file://../../kafka
+  version: 27.1.1
+- name: elasticsearch
+  repository: file://../../elasticsearch
+  version: 19.21.2
+- name: kibana
+  repository: file://../../kibana
+  version: 10.13.0
+digest: sha256:4b1069df3108c776c51455b3af6a1d2048d56162b909d70f82633c451cca5e6f
+generated: "2024-03-17T13:24:22.0751596+01:00"

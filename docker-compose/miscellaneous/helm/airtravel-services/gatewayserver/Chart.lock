@@ -1,0 +1,6 @@
+dependencies:
+- name: airtravel-common
+  repository: file://../../airtravel-common
+  version: 0.1.0
+digest: sha256:87daea2b705ecfcc18059deb8d9a9d1db7dad06d17fc40ab2c9c5d711f3d8023
+generated: "2024-03-12T21:56:19.9276913+01:00"

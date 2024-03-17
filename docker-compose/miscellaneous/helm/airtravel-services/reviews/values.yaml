@@ -1,0 +1,32 @@
+# Default values for flights.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+deploymentName: flights-deployment
+serviceName: flights
+appLabel: flights
+appName: flights
+
+replicaCount: 1
+
+image:
+  repository: vishalvdev/flights
+  tag: s9
+
+containerPort: 8081
+
+service:
+  type: ClusterIP
+  port: 8081
+  targetPort: 8081
+
+appname_enabled: true
+profile_enabled: true
+config_enabled: true
+eureka_enabled: true
+resouceserver_enabled: false
+otel_enabled: true
+kafka_enabled: true
