@@ -7,7 +7,8 @@ import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public non-sealed class DrivingIdentity extends IdentityDocument {
+//public non-sealed class DrivingIdentity extends IdentityDocument {
+public  class DrivingIdentity extends IdentityDocument {
     private List<VehicleType> drivingVehicleType;
 
 }

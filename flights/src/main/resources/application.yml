@@ -1,6 +1,8 @@
 server:
   port: 8081
 spring:
+  banner:
+    location: banner.txt
 #  data:
 ##    elasticsearch:
 ##      cluster-name: elasticsearch

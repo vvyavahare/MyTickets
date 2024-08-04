@@ -5,7 +5,8 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public sealed class NationalIdentity extends IdentityDocument permits PassportDetail, ResidencePermitDetail {
+//public sealed class NationalIdentity extends IdentityDocument permits PassportDetail, ResidencePermitDetail {
+public  class NationalIdentity extends IdentityDocument{
     private String issuingCountry;
     private String fistName;
     private String lastName;
