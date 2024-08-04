@@ -326,7 +326,7 @@ Goto Clients -> Create Client ->
 
 
   Now lets create roles:
-    Click on Realm ROles [left panel] -> create a Role eg. flights
+    Click on Realm ROles [left panel] -> create a Role eg. flight
     Click on Clients tab [left panel] -> Select your Client -> Click "Service accounts roles" tab -> Assign Role -> Assign newly created flights role to this client.
 
   Now with this role, you can call POST APIs for flights & reserve MS. (Refer postman collection for way to generate token & give it in same POST request)

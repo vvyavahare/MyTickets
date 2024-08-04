@@ -27,4 +27,10 @@ insert into flight (capacity,created_at,created_by,departure_time,destination,fl
 insert into flight (capacity,created_at,created_by,departure_time,destination,flight,flight_number,origin,speed_series,id) values
     (700,now(),'FLIGHT_MS',now(),'Kuwait','Kuwait Airways','8205675648','Schiphol',null,14);
 insert into flight (capacity,created_at,created_by,departure_time,destination,flight,flight_number,origin,speed_series,id) values
-    (700,now(),'FLIGHT_MS',now(),'Rome','Italia Airways','8205675648','Eindhoveen',null,15);
+    (700,now(),'FLIGHT_MS',now(),'Rome','Italia Airways','8205675649','Eindhoveen',null,15);
+insert into flight (capacity,created_at,created_by,departure_time,destination,flight,flight_number,origin,speed_series,id) values
+    (700,now(),'FLIGHT_MS',now(),'Bratislava','Slovakian Airways','8205675650','Eindhoveen',null,16);
+insert into flight (capacity,created_at,created_by,departure_time,destination,flight,flight_number,origin,speed_series,id) values
+        (700,now(),'FLIGHT_MS',now(),'Vienna','Austrian Airways','8205675651','Eindhoveen',null,17);
+ insert into flight (capacity,created_at,created_by,departure_time,destination,flight,flight_number,origin,speed_series,id) values
+     (700,now(),'FLIGHT_MS',now(),'Nice','French Airways','8205675652','Eindhoveen',null,18);

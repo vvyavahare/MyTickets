@@ -15,7 +15,12 @@ public class Passenger extends BaseEntity {
     private String prefix;
     private String firstName;
     private String lastName;
+
+    @OneToOne(mappedBy = "passenger")
+    private IdentityDocument identityDocument;
+
     private LocalDateTime dateOfBirth;
+
     @ManyToMany(mappedBy = "passengerDetails")//(cascade = CascadeType.ALL)
 //    @JoinColumn(name = "booking_id")
     private List<Booking> booking;
