@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class BookingDto {
     @Schema(
             description = "Booking Price In Euros of the flight ", example = "737"
     )
-    private Long finalBookingPriceInEuro;
+    private BigDecimal finalBookingPriceInEuro;
 
     @NotEmpty(message = "flight booking Date Time can not be empty or null")
     @Schema(

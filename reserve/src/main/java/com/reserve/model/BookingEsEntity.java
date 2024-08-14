@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.data.elasticsearch.annotations.Document;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -19,6 +20,6 @@ public class BookingEsEntity
     private String flightNumber;
     private int seatCount;
     private LocalDateTime bookingDate;
-    private Long finalBookingPriceInEuro;
+    private BigDecimal finalBookingPriceInEuro;
     private List<Passenger> passengerDetails;
 }

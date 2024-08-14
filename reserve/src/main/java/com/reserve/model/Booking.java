@@ -3,6 +3,7 @@ package com.reserve.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class Booking extends BaseEntity {
     private String flightNumber;
     private int seatCount;
     private LocalDateTime bookingDate;
-    private Long finalBookingPriceInEuro;
+    private BigDecimal finalBookingPriceInEuro;
 
 //    @OneToMany
 //    private Passenger bookingPersonId;

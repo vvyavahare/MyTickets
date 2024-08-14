@@ -16,6 +16,8 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.junit.Assert;
 
+import java.math.BigDecimal;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class StepDefinitions {
@@ -75,7 +77,6 @@ public class StepDefinitions {
                         "}")
                 .post();
 
-        String jsonString = response.asString();
 
     }
 
@@ -84,8 +85,8 @@ public class StepDefinitions {
     public void flight_booking_details_returned() throws JsonProcessingException {
         Assert.assertEquals(201, response.getStatusCode());
         BookingDto dto = mapper.readValue(response.body().asString(), BookingDto.class);
-//        Assert.assertEquals(dto.getFinalBookingPriceInEuro(), "230.34");
-//        Assert.assertEquals(dto.getBookingDate(), "2024-01-12T19:34:14");
+        Assert.assertEquals(dto.getFinalBookingPriceInEuro(), BigDecimal.valueOf(230.34));
+        Assert.assertEquals(dto.getBookingDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")), "2024-01-12 19:34:14");
         Assert.assertEquals(dto.getFlightNumber(), "2305675644");
         Assert.assertEquals(dto.getSeatCount(), 2);
 
@@ -109,7 +110,6 @@ public class StepDefinitions {
         Assert.assertFalse(dtos.isEmpty());
         Assert.assertTrue(dtos.stream().filter(dto -> dto.getFlightNumber().equals("2305675644")).findFirst().stream().findAny().isPresent());
         Assert.assertEquals(capacity - 2, dtos.stream().filter(dto -> dto.getFlightNumber().equals("2305675644")).findFirst().get().getCapacity());
-
     }
 
 

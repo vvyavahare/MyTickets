@@ -36,6 +36,35 @@ curl -XGET "http://elasticsearch:9200/flights_index/_search" -H 'Content-Type: a
   }
 }'
 
+GET bookings_index/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "match": {
+            "finalBookingPriceInEuro": "231"
+          }
+        }
+      ]
+    }
+  }
+}
+
+curl -XGET "http://elasticsearch:9200/bookings_index/_search" -H 'Content-Type: application/json' -d'
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "match": {
+            "finalBookingPriceInEuro": "231"
+          }
+        }
+      ]
+    }
+  }
+}'
 --------------------------------------------------------------------------------------------------------------
 
 To create an image using google jib
